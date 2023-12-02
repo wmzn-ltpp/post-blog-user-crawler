@@ -1,4 +1,5 @@
 <?php
+
 use log\Console;
 use Illuminate\Database\Capsule\Manager as Db;
 
@@ -225,7 +226,6 @@ class Base
                 return $db;
             }
             $id = Db::table('user')
-                ->lockForUpdate()
                 ->insertGetId(Base::$user_data);
             $db = Db::table('user')
                 ->where('id', $id)
@@ -355,7 +355,6 @@ class Base
                 ->insertGetId(Base::$answer_data);
             Db::table('question')
                 ->where('id', $question_id)
-                ->lockForUpdate()
                 ->increment('answer_num', 1);
             Base::addNotice($process_loc, 0, $question_id, $user_db->name);
             Console::log($process_loc, '问题【' . $name . '】的回答插入成功', null, 'green');
