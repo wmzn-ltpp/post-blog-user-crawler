@@ -83,7 +83,7 @@ class CSDN
                 $element = $dom->getElementById('content_views');
                 // 输出元素内容
                 $content = $dom->saveXML($element);
-                $html = '<!DOCTYPE html><head><meta charset="UTF-8"><title>' . $title . '</title></head><style>' . CSDN::$css . '</style><body>' . '<h1>' . $title . '</h1>' . $content . '</body></html>';
+                $html = '<!DOCTYPE html><head><meta charset="UTF-8"><title>' . $title . '</title></head><body>' . '<h1>' . $title . '</h1>' . $content . '</body></html>';
                 Base::htmlImageToBase64($process_loc, $html);
                 if (!$html) {
                     continue;
@@ -100,6 +100,7 @@ class CSDN
                     }
                 }
                 if (Cin::$save_file) {
+                    $html = '<!DOCTYPE html><head><meta charset="UTF-8"><title>' . $title . '</title></head><style>' . CSDN::$css . '</style><body>' . '<h1>' . $title . '</h1>' . $content . '</body></html>';
                     $tem_save_path = CSDN::$path . $title . '（' . $user . '）.html';
                     Base::writeToFile($process_loc, $tem_save_path, $html);
                 }

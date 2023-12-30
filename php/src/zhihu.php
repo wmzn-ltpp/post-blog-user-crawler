@@ -135,8 +135,9 @@ class ZhiHu
                 }
 
                 if (Cin::$save_file) {
+                    $html = '<!DOCTYPE html><head><meta charset="UTF-8"><title>' . $question . '</title><style>' . ZhiHu::$css . '</style></head><body>' . $tem->content . '</body></html>';
                     $tem_save_path = ZhiHu::$path . $question . '（' . $tem->author->name . '）.html';
-                    Base::writeToFile($process_loc, $tem_save_path, $ans);
+                    Base::writeToFile($process_loc, $tem_save_path, $html);
                 }
                 Console::log($process_loc, $question, null, 'green');
             }
