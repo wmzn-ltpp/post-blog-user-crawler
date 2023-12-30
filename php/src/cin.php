@@ -1,4 +1,5 @@
 <?php
+
 use log\Console;
 
 error_reporting(E_ERROR);
@@ -9,17 +10,17 @@ class Cin
     /**
      * 操作
      */
-    static $do = '13';
+    static $do = '123';
 
     /**
      * 是否保存本地文件
      */
-    static $save_file = false;
+    static $save_file = true;
 
     /**
      * 开多少个进程
      */
-    static $process_num = 36;
+    static $process_num = 4;
 
     /**
      * @param int $process_loc
@@ -69,7 +70,6 @@ class Cin
         Console::log($process_loc, '2.爬取CSDN', null, 'green');
 
         Console::log($process_loc, '3.爬取简书', null, 'green');
-
     }
 
     /**
@@ -82,7 +82,6 @@ class Cin
         Console::log($process_loc, '1.保存', null, 'green');
 
         Console::log($process_loc, '2.不保存', null, 'green');
-
     }
 
     /**
@@ -91,7 +90,6 @@ class Cin
     static private function threadMenu($process_loc)
     {
         Console::log($process_loc, '请输入开启多少个进程？', null, 'red');
-
     }
 
 
@@ -138,5 +136,4 @@ class Cin
     {
         return is_numeric($str);
     }
-
 }
