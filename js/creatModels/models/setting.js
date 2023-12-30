@@ -138,6 +138,41 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.TEXT,
       allowNull: false,
       comment: "启动SSH服务器地址"
+    },
+    default_contest_content: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+      comment: "竞赛默认内容描述"
+    },
+    default_contest_duration: {
+      type: DataTypes.BIGINT.UNSIGNED,
+      allowNull: false,
+      defaultValue: 7200,
+      comment: "竞赛默认持续时间（单位秒）"
+    },
+    default_contest_begin_time: {
+      type: DataTypes.BIGINT.UNSIGNED,
+      allowNull: false,
+      defaultValue: 0,
+      comment: "竞赛默认开始时间（当天零点开始的秒数）"
+    },
+    default_contest_problem_num: {
+      type: DataTypes.BIGINT.UNSIGNED,
+      allowNull: false,
+      defaultValue: 3,
+      comment: "竞赛默认题目数目"
+    },
+    default_contest_min_people_num: {
+      type: DataTypes.BIGINT.UNSIGNED,
+      allowNull: false,
+      defaultValue: 2000,
+      comment: "竞赛默认最小参赛人数"
+    },
+    default_contest_max_people_num: {
+      type: DataTypes.BIGINT.UNSIGNED,
+      allowNull: false,
+      defaultValue: 4000,
+      comment: "竞赛默认最大参赛人数"
     }
   }, {
     sequelize,

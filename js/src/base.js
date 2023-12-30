@@ -44,7 +44,6 @@ class Base {
         }
         let db_user_data = {
             name: '',
-            online: 0,
             acnum: 0,
             grade: 1,
             fans: 0,
@@ -389,21 +388,6 @@ class Base {
         }
         Console.log(process_loc, '不合法通知类型，不进行插入');
         return {};
-    }
-
-    /**
-     * 批量用户上线
-     * @param {int} process_loc 线程编号
-     */
-    async userOnline(process_loc) {
-        if (this.Db.sequelize === null || typeof this.Db.sequelize !== 'object' || Array.isArray(this.Db.sequelize) || Object.keys(this.Db.sequelize).length === 0) {
-            return {};
-        }
-        await this.Db.updateUserOnline().catch((err) => {
-            Console.error(process_loc, '用户在线更新出错：' + err.message);
-            return {};
-        });
-        Console.log(process_loc, '批量用户已上线');
     }
 
     /**

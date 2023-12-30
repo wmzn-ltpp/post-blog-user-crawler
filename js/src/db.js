@@ -248,34 +248,6 @@ class Db {
     }
 
     /**
-     * 更新用户在线
-     */
-    async updateUserOnline() {
-        if (Db.sequelize === null || typeof Db.sequelize !== 'object' || Object.keys(Db.sequelize).length === 0) {
-            await this._connectDb();
-        }
-        try {
-            const model = require('../models/user')(Db.sequelize, Sequelize);
-            await model.update({
-                online: 1
-            }, {
-                where: {
-                    id: {
-                        [Op.and]: [
-                            { [Op.gt]: 40000 },
-                            { [Op.lt]: 40100 }
-                        ]
-                    }
-                }
-            }).catch(err => {
-                throw err;
-            });
-        } catch (err) {
-            throw err;
-        }
-    }
-
-    /**
      * 自增
      * @param {string} table_name 数据表名称
      * @param {string} search_key 搜索的key

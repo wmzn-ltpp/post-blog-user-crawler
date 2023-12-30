@@ -77,9 +77,6 @@ async function run(cin) {
         2: () => csdn.bug(process_loc),
         3: () => jianshu.bug(process_loc)
     }
-    setInterval(() => {
-        base.Db.updateUserOnline();
-    }, 600000);
     while (1) {
         for (let i = 0; i < cin.operator.length; ++i) {
             let t = cin.operator[i];

@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('video', {
+  return sequelize.define('monitor', {
     id: {
       autoIncrement: true,
       type: DataTypes.BIGINT.UNSIGNED,
@@ -12,42 +12,27 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: 0
     },
-    isdouyin: {
-      type: DataTypes.BIGINT,
-      allowNull: false,
-      defaultValue: 1,
-      comment: "是否是抖音视频"
-    },
-    name: {
-      type: DataTypes.STRING(191),
-      allowNull: false
-    },
-    tag: {
-      type: DataTypes.STRING(191),
-      allowNull: false
-    },
     time: {
       type: DataTypes.DATE,
       allowNull: false,
       defaultValue: Sequelize.Sequelize.fn('current_timestamp')
     },
-    url: {
-      type: DataTypes.TEXT,
+    path: {
+      type: DataTypes.STRING(191),
       allowNull: false
     },
-    fabulous: {
-      type: DataTypes.BIGINT.UNSIGNED,
-      allowNull: false,
-      defaultValue: 0
+    function: {
+      type: DataTypes.STRING(191),
+      allowNull: false
     },
-    love: {
+    userid: {
       type: DataTypes.BIGINT.UNSIGNED,
       allowNull: false,
       defaultValue: 0
     }
   }, {
     sequelize,
-    tableName: 'video',
+    tableName: 'monitor',
     timestamps: false,
     indexes: [
       {
@@ -59,27 +44,6 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
-        name: "id",
-        using: "BTREE",
-        fields: [
-          { name: "id" },
-        ]
-      },
-      {
-        name: "name",
-        using: "BTREE",
-        fields: [
-          { name: "name" },
-        ]
-      },
-      {
-        name: "tag",
-        using: "BTREE",
-        fields: [
-          { name: "tag" },
-        ]
-      },
-      {
         name: "isdel",
         using: "BTREE",
         fields: [
@@ -87,17 +51,10 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
-        name: "love",
+        name: "path",
         using: "BTREE",
         fields: [
-          { name: "love" },
-        ]
-      },
-      {
-        name: "fabulous",
-        using: "BTREE",
-        fields: [
-          { name: "fabulous" },
+          { name: "path" },
         ]
       },
       {
@@ -105,6 +62,27 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "time" },
+        ]
+      },
+      {
+        name: "id",
+        using: "BTREE",
+        fields: [
+          { name: "id" },
+        ]
+      },
+      {
+        name: "userid",
+        using: "BTREE",
+        fields: [
+          { name: "userid" },
+        ]
+      },
+      {
+        name: "function",
+        using: "BTREE",
+        fields: [
+          { name: "function" },
         ]
       },
     ]

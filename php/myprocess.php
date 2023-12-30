@@ -24,8 +24,6 @@ class Myprocess
     public function run($process_loc)
     {
         Console::log($process_loc, '进程已运行', null, 'green');
-        $cnt = 0;
-        $limit = 180;
         $do = [
             '1' => function ($process_loc) {
                 ZhiHu::bug($process_loc);
@@ -40,13 +38,6 @@ class Myprocess
         $len = strlen(Cin::$do);
         while (1) {
             for ($i = 0; $i < $len; ++$i) {
-                ++$cnt;
-                if ($cnt > $limit) {
-                    $cnt = 0;
-                }
-                if ($cnt % $limit == 0) {
-                    Base::userOnline($process_loc);
-                }
                 Console::log($process_loc, '开始爬取' . Base::$tips[Cin::$do[$i]] . '数据', null, 'yellow');
                 $do[Cin::$do[$i]]($process_loc);
                 sleep(6);

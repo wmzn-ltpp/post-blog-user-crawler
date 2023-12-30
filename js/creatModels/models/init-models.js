@@ -22,6 +22,7 @@ var _joincontest = require("./joincontest");
 var _lovearticle = require("./lovearticle");
 var _lovequestion = require("./lovequestion");
 var _lovevideo = require("./lovevideo");
+var _monitor = require("./monitor");
 var _notice = require("./notice");
 var _oj = require("./oj");
 var _orderforgoods = require("./orderforgoods");
@@ -64,6 +65,7 @@ function initModels(sequelize) {
   var lovearticle = _lovearticle(sequelize, DataTypes);
   var lovequestion = _lovequestion(sequelize, DataTypes);
   var lovevideo = _lovevideo(sequelize, DataTypes);
+  var monitor = _monitor(sequelize, DataTypes);
   var notice = _notice(sequelize, DataTypes);
   var oj = _oj(sequelize, DataTypes);
   var orderforgoods = _orderforgoods(sequelize, DataTypes);
@@ -107,6 +109,7 @@ function initModels(sequelize) {
     lovearticle,
     lovequestion,
     lovevideo,
+    monitor,
     notice,
     oj,
     orderforgoods,

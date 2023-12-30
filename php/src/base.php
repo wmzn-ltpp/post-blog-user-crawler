@@ -70,7 +70,6 @@ class Base
      */
     static $user_data = [
         'name' => '',
-        'online' => 0,
         'acnum' => 0,
         'grade' => 0,
         'fans' => 0,
@@ -560,28 +559,6 @@ class Base
             return Base::$image_list[$loc]->url;
         }
         return '';
-    }
-
-    /**
-     * 批量用户上线
-     */
-    static public function userOnline($process_loc)
-    {
-        try {
-            $num = 666;
-            $being = rand(40000, 100000);
-            $end = $being + $num;
-            Db::table('user')
-                ->where('id', '>', $being)
-                ->where('id', '<', $end)
-                ->update([
-                    'online' => 1,
-                    'lastlogin' => date('Y-m-d H:i:s', time())
-                ]);
-            Console::log($process_loc, '批量用户已上线', null, 'green');
-        } catch (Exception $e) {
-            return;
-        }
     }
 
     /**

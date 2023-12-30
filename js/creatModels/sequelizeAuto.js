@@ -11,8 +11,8 @@
 const SequelizeAuto = require('sequelize-auto');
 const Console = require('../src/console');
 const auto_db = new SequelizeAuto('ltpp', 'root', 'SQS', {
-    host: '192.168.1.4',
-    port: 4466,
+    host: 'ltpp.vip',
+    port: 44466,
     dialect: 'mysql',
     charset: 'utf8mb4',
     collation: 'utf8mb4_unicode_ci',
