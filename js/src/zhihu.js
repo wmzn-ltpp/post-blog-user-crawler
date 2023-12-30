@@ -118,6 +118,7 @@ class ZhiHu {
                     }
                 }
                 if (this.Cin.save_file) {
+                    let ans = '<!DOCTYPE html><head><meta charset="UTF-8"><title>' + question + '</title><style>' + ZhiHu.css + '</style></head><body>' + tem.content + '</body></html>';
                     let tem_save_path = ZhiHu.path + question + '（' + tem.author.name + '）.html';
                     this.Base.writeToFile(process_loc, tem_save_path, ans);
                 }
