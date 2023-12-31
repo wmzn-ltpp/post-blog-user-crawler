@@ -63,7 +63,7 @@ class Base
     /**
      * 评论数目
      */
-    static $comment_num = 6;
+    static $comment_num = 36;
 
     /**
      * 数据库插入用户信息
