@@ -569,6 +569,9 @@ class Base
     static public function getImgBase64($process_loc, $src)
     {
         try {
+            if (!$src) {
+                return '';
+            }
             $tem_image = @file_get_contents($src, false, stream_context_create(Base::$options));
             if (!$tem_image) {
                 $tem_image = '';
