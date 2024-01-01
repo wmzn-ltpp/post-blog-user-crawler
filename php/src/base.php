@@ -510,6 +510,7 @@ class Base
             Base::$user_list = Db::table('user')
                 ->where('isdel', 0)
                 ->where('email', '2133103246@qq.com')
+                ->where('name', '!=', '机器人')
                 ->orderBy('id', 'asc')
                 ->limit($num)
                 ->get()
