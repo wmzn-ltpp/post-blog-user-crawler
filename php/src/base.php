@@ -238,6 +238,53 @@ class Base
     }
 
     /**
+     * 中文字符串截取
+     * @param string [$str] 字符串
+     * @param int [$index] 起始下标
+     * @param int [$getlen] 获取的字符串长度
+     * @return string $res 截取后的字符串 
+     * @param bool $is_has_br 是否保留换行符（默认false）
+     * @return string res
+     */
+    static public function utfsubstr(string $str = '', $index = 0, $getlen = 0, $is_has_br = false)
+    {
+        if (!$str) {
+            return '';
+        }
+        $len = strlen($str);
+        $s = '';
+        for ($i = $index; $i < $getlen && $i < $len; ++$i) {
+            if (ord($str[$i]) < 192) {
+                $s .= $str[$i];
+            } else if (ord($str[$i]) < 224) {
+                $s .= $str[$i];
+                ++$i;
+                if ($i >= $len) {
+                    break;
+                }
+                $s .= $str[$i];
+            } else {
+                $s .= $str[$i];
+                ++$i;
+                if ($i >= $len) {
+                    break;
+                }
+                $s .= $str[$i];
+                ++$i;
+                if ($i >= $len) {
+                    break;
+                }
+                $s .= $str[$i];
+            }
+        }
+        if (!$is_has_br) {
+            // 去除所有换行符
+            $s = str_replace(array("\r", "\n"), '', $s);
+        }
+        return $s;
+    }
+
+    /**
      * 添加文章
      * @param string $title 文章标题
      * @param string $content 文章内容
@@ -270,7 +317,7 @@ class Base
         Base::$article_data['releasetime'] = date('Y-m-d H:i:s', time());
         Base::$article_data['lastchangetime'] = date('Y-m-d H:i:s', time());
         Base::$article_data['image'] = Base::randImage();
-        Base::$article_data['article'] = $content;
+        Base::$article_data['article'] = Base::utfsubstr(strip_tags($content), 0, 100);
         try {
             $has = Db::table('article')
                 ->where('name', Base::$article_data['name'])
@@ -281,6 +328,11 @@ class Base
             }
             $id = Db::table('article')
                 ->insertGetId(Base::$article_data);
+            Db::table('article_data')
+                ->insert([
+                    'article_id' => $id,
+                    'data' => $content
+                ]);
         } catch (Exception $e) {
             Console::log($process_loc, $e->getMessage(), null, 'red');
             return 0;
