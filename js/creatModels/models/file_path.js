@@ -1,10 +1,10 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('fabulousvideo', {
-    id: {
-      autoIncrement: true,
-      type: DataTypes.BIGINT.UNSIGNED,
+  return sequelize.define('file_path', {
+    path: {
+      type: DataTypes.STRING(535),
       allowNull: false,
+      defaultValue: "",
       primaryKey: true
     },
     userid: {
@@ -12,19 +12,25 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: 0
     },
-    videoid: {
+    file_id: {
       type: DataTypes.BIGINT.UNSIGNED,
       allowNull: false,
-      defaultValue: 0
+      defaultValue: 0,
+      unique: "file_id"
     },
     isdel: {
       type: DataTypes.BIGINT.UNSIGNED,
       allowNull: false,
       defaultValue: 0
+    },
+    time: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: Sequelize.Sequelize.fn('current_timestamp')
     }
   }, {
     sequelize,
-    tableName: 'fabulousvideo',
+    tableName: 'file_path',
     timestamps: false,
     indexes: [
       {
@@ -32,14 +38,15 @@ module.exports = function(sequelize, DataTypes) {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "id" },
+          { name: "path" },
         ]
       },
       {
-        name: "videoid",
+        name: "file_id",
+        unique: true,
         using: "BTREE",
         fields: [
-          { name: "videoid" },
+          { name: "file_id" },
         ]
       },
       {

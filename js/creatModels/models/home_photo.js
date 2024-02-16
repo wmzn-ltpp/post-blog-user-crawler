@@ -1,40 +1,42 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('monitor', {
+  return sequelize.define('home_photo', {
     id: {
       autoIncrement: true,
       type: DataTypes.BIGINT.UNSIGNED,
       allowNull: false,
       primaryKey: true
     },
-    time: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: Sequelize.Sequelize.fn('current_timestamp')
-    },
     path: {
-      type: DataTypes.STRING(191),
+      type: DataTypes.STRING(535),
       allowNull: false,
-      defaultValue: "无"
-    },
-    function: {
-      type: DataTypes.STRING(191),
-      allowNull: false,
-      defaultValue: "无"
+      defaultValue: "无",
+      unique: "path_2"
     },
     userid: {
       type: DataTypes.BIGINT.UNSIGNED,
       allowNull: false,
       defaultValue: 0
     },
+    file_id: {
+      type: DataTypes.BIGINT.UNSIGNED,
+      allowNull: false,
+      defaultValue: 0,
+      unique: "file_id_2"
+    },
     isdel: {
       type: DataTypes.BIGINT.UNSIGNED,
       allowNull: false,
       defaultValue: 0
+    },
+    time: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: Sequelize.Sequelize.fn('current_timestamp')
     }
   }, {
     sequelize,
-    tableName: 'monitor',
+    tableName: 'home_photo',
     timestamps: false,
     indexes: [
       {
@@ -46,24 +48,26 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
-        name: "isdel",
+        name: "file_id_2",
+        unique: true,
         using: "BTREE",
         fields: [
-          { name: "isdel" },
+          { name: "file_id" },
         ]
       },
       {
-        name: "path",
+        name: "path_2",
+        unique: true,
         using: "BTREE",
         fields: [
           { name: "path" },
         ]
       },
       {
-        name: "time",
+        name: "isdel",
         using: "BTREE",
         fields: [
-          { name: "time" },
+          { name: "isdel" },
         ]
       },
       {
@@ -74,10 +78,17 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
-        name: "function",
+        name: "file_id",
         using: "BTREE",
         fields: [
-          { name: "function" },
+          { name: "file_id" },
+        ]
+      },
+      {
+        name: "path",
+        using: "BTREE",
+        fields: [
+          { name: "path" },
         ]
       },
     ]

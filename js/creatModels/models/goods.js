@@ -7,25 +7,10 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       primaryKey: true
     },
-    isdel: {
-      type: DataTypes.BIGINT.UNSIGNED,
-      allowNull: false,
-      defaultValue: 0
-    },
     name: {
       type: DataTypes.STRING(191),
       allowNull: false,
       comment: "名称"
-    },
-    money: {
-      type: DataTypes.DECIMAL(65,16),
-      allowNull: false,
-      comment: "价格"
-    },
-    path: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-      comment: "内容路径"
     },
     type: {
       type: DataTypes.STRING(191),
@@ -38,15 +23,33 @@ module.exports = function(sequelize, DataTypes) {
       defaultValue: "0 MB",
       comment: "文件大小"
     },
+    money: {
+      type: DataTypes.DECIMAL(65,16),
+      allowNull: false,
+      defaultValue: 0.0000000000000000,
+      comment: "价格"
+    },
     times: {
       type: DataTypes.BIGINT.UNSIGNED,
       allowNull: false,
       defaultValue: 0,
       comment: "下载次数"
     },
+    isdel: {
+      type: DataTypes.BIGINT.UNSIGNED,
+      allowNull: false,
+      defaultValue: 0
+    },
+    path: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+      defaultValue: "'无'",
+      comment: "内容路径"
+    },
     blurb: {
       type: DataTypes.TEXT,
       allowNull: false,
+      defaultValue: "'无'",
       comment: "简介"
     },
     time: {
@@ -103,24 +106,10 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
-        name: "id",
-        using: "BTREE",
-        fields: [
-          { name: "id" },
-        ]
-      },
-      {
         name: "size",
         using: "BTREE",
         fields: [
           { name: "size" },
-        ]
-      },
-      {
-        name: "time",
-        using: "BTREE",
-        fields: [
-          { name: "time" },
         ]
       },
     ]

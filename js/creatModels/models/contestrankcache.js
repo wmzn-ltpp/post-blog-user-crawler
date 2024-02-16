@@ -1,30 +1,35 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('fabulousvideo', {
-    id: {
+  return sequelize.define('contestrankcache', {
+    contestid: {
       autoIncrement: true,
       type: DataTypes.BIGINT.UNSIGNED,
       allowNull: false,
       primaryKey: true
     },
-    userid: {
-      type: DataTypes.BIGINT.UNSIGNED,
-      allowNull: false,
-      defaultValue: 0
-    },
-    videoid: {
-      type: DataTypes.BIGINT.UNSIGNED,
-      allowNull: false,
-      defaultValue: 0
-    },
     isdel: {
       type: DataTypes.BIGINT.UNSIGNED,
       allowNull: false,
       defaultValue: 0
+    },
+    json: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+      defaultValue: "''"
+    },
+    html: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+      defaultValue: "''"
+    },
+    echarts: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+      defaultValue: "''"
     }
   }, {
     sequelize,
-    tableName: 'fabulousvideo',
+    tableName: 'contestrankcache',
     timestamps: false,
     indexes: [
       {
@@ -32,21 +37,7 @@ module.exports = function(sequelize, DataTypes) {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "id" },
-        ]
-      },
-      {
-        name: "videoid",
-        using: "BTREE",
-        fields: [
-          { name: "videoid" },
-        ]
-      },
-      {
-        name: "userid",
-        using: "BTREE",
-        fields: [
-          { name: "userid" },
+          { name: "contestid" },
         ]
       },
       {

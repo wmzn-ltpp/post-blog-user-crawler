@@ -7,22 +7,17 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       primaryKey: true
     },
-    userid: {
-      type: DataTypes.BIGINT.UNSIGNED,
-      allowNull: false,
-      defaultValue: 0
-    },
     contestid: {
       type: DataTypes.BIGINT.UNSIGNED,
       allowNull: false,
       defaultValue: 0
     },
-    isdel: {
+    userid: {
       type: DataTypes.BIGINT.UNSIGNED,
       allowNull: false,
       defaultValue: 0
     },
-    totaltime: {
+    isdel: {
       type: DataTypes.BIGINT.UNSIGNED,
       allowNull: false,
       defaultValue: 0
@@ -41,13 +36,6 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
-        name: "id",
-        using: "BTREE",
-        fields: [
-          { name: "id" },
-        ]
-      },
-      {
         name: "userid",
         using: "BTREE",
         fields: [
@@ -59,13 +47,6 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "contestid" },
-        ]
-      },
-      {
-        name: "totaltime",
-        using: "BTREE",
-        fields: [
-          { name: "totaltime" },
         ]
       },
       {

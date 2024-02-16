@@ -7,6 +7,11 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       primaryKey: true
     },
+    from: {
+      type: DataTypes.STRING(191),
+      allowNull: false,
+      defaultValue: "无"
+    },
     isdel: {
       type: DataTypes.BIGINT.UNSIGNED,
       allowNull: false,
@@ -14,12 +19,8 @@ module.exports = function(sequelize, DataTypes) {
     },
     hitokoto: {
       type: DataTypes.TEXT,
-      allowNull: true
-    },
-    from: {
-      type: DataTypes.STRING(191),
-      allowNull: true,
-      defaultValue: "root"
+      allowNull: false,
+      defaultValue: "'无'"
     }
   }, {
     sequelize,
@@ -29,13 +30,6 @@ module.exports = function(sequelize, DataTypes) {
       {
         name: "PRIMARY",
         unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "id" },
-        ]
-      },
-      {
-        name: "id",
         using: "BTREE",
         fields: [
           { name: "id" },

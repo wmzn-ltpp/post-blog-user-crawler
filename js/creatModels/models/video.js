@@ -7,11 +7,6 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       primaryKey: true
     },
-    isdel: {
-      type: DataTypes.BIGINT.UNSIGNED,
-      allowNull: false,
-      defaultValue: 0
-    },
     isdouyin: {
       type: DataTypes.BIGINT,
       allowNull: false,
@@ -20,11 +15,18 @@ module.exports = function(sequelize, DataTypes) {
     },
     name: {
       type: DataTypes.STRING(191),
-      allowNull: false
+      allowNull: false,
+      defaultValue: "无"
     },
     tag: {
       type: DataTypes.STRING(191),
-      allowNull: false
+      allowNull: false,
+      defaultValue: "无"
+    },
+    isdel: {
+      type: DataTypes.BIGINT.UNSIGNED,
+      allowNull: false,
+      defaultValue: 0
     },
     time: {
       type: DataTypes.DATE,
@@ -33,7 +35,8 @@ module.exports = function(sequelize, DataTypes) {
     },
     url: {
       type: DataTypes.TEXT,
-      allowNull: false
+      allowNull: false,
+      defaultValue: "'无'"
     },
     fabulous: {
       type: DataTypes.BIGINT.UNSIGNED,
@@ -59,13 +62,6 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
-        name: "id",
-        using: "BTREE",
-        fields: [
-          { name: "id" },
-        ]
-      },
-      {
         name: "name",
         using: "BTREE",
         fields: [
@@ -84,27 +80,6 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "isdel" },
-        ]
-      },
-      {
-        name: "love",
-        using: "BTREE",
-        fields: [
-          { name: "love" },
-        ]
-      },
-      {
-        name: "fabulous",
-        using: "BTREE",
-        fields: [
-          { name: "fabulous" },
-        ]
-      },
-      {
-        name: "time",
-        using: "BTREE",
-        fields: [
-          { name: "time" },
         ]
       },
       {

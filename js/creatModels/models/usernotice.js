@@ -12,6 +12,11 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: 0
     },
+    isdel: {
+      type: DataTypes.BIGINT.UNSIGNED,
+      allowNull: false,
+      defaultValue: 0
+    },
     articleid: {
       type: DataTypes.BIGINT.UNSIGNED,
       allowNull: false,
@@ -32,18 +37,14 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: 0
     },
-    isdel: {
-      type: DataTypes.BIGINT.UNSIGNED,
-      allowNull: false,
-      defaultValue: 0
-    },
     notice: {
       type: DataTypes.TEXT,
-      allowNull: true
+      allowNull: false,
+      defaultValue: "''"
     },
     time: {
       type: DataTypes.DATE,
-      allowNull: true,
+      allowNull: false,
       defaultValue: Sequelize.Sequelize.fn('current_timestamp')
     }
   }, {
@@ -60,13 +61,6 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
-        name: "id",
-        using: "BTREE",
-        fields: [
-          { name: "id" },
-        ]
-      },
-      {
         name: "userid",
         using: "BTREE",
         fields: [
@@ -74,45 +68,10 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
-        name: "blogid",
-        using: "BTREE",
-        fields: [
-          { name: "articleid" },
-        ]
-      },
-      {
-        name: "fanuserid",
-        using: "BTREE",
-        fields: [
-          { name: "fanuserid" },
-        ]
-      },
-      {
         name: "isdel",
         using: "BTREE",
         fields: [
           { name: "isdel" },
-        ]
-      },
-      {
-        name: "videouid",
-        using: "BTREE",
-        fields: [
-          { name: "videoid" },
-        ]
-      },
-      {
-        name: "answerid",
-        using: "BTREE",
-        fields: [
-          { name: "questionid" },
-        ]
-      },
-      {
-        name: "time",
-        using: "BTREE",
-        fields: [
-          { name: "time" },
         ]
       },
     ]

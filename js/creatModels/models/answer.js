@@ -7,11 +7,6 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       primaryKey: true
     },
-    isdel: {
-      type: DataTypes.BIGINT.UNSIGNED,
-      allowNull: false,
-      defaultValue: 0
-    },
     questionid: {
       type: DataTypes.BIGINT.UNSIGNED,
       allowNull: false,
@@ -34,9 +29,15 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: 0
     },
+    isdel: {
+      type: DataTypes.BIGINT.UNSIGNED,
+      allowNull: false,
+      defaultValue: 0
+    },
     answer: {
       type: DataTypes.TEXT,
       allowNull: false,
+      defaultValue: "'无'",
       comment: "回答的内容"
     },
     time: {
@@ -98,20 +99,6 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "touserid" },
-        ]
-      },
-      {
-        name: "id",
-        using: "BTREE",
-        fields: [
-          { name: "id" },
-        ]
-      },
-      {
-        name: "time",
-        using: "BTREE",
-        fields: [
-          { name: "time" },
         ]
       },
     ]

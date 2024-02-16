@@ -7,20 +7,20 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       primaryKey: true
     },
-    isdel: {
-      type: DataTypes.BIGINT.UNSIGNED,
-      allowNull: false,
-      defaultValue: 0
-    },
     user_id: {
       type: DataTypes.BIGINT.UNSIGNED,
-      allowNull: true,
+      allowNull: false,
       defaultValue: 0
     },
     ip: {
       type: DataTypes.STRING(191),
       allowNull: false,
-      defaultValue: "999.999.999.999"
+      defaultValue: "0.0.0.0"
+    },
+    isdel: {
+      type: DataTypes.BIGINT.UNSIGNED,
+      allowNull: false,
+      defaultValue: 0
     }
   }, {
     sequelize,
@@ -40,13 +40,6 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "ip" },
-        ]
-      },
-      {
-        name: "id",
-        using: "BTREE",
-        fields: [
-          { name: "id" },
         ]
       },
       {

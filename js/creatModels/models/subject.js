@@ -3,13 +3,14 @@ module.exports = function(sequelize, DataTypes) {
   return sequelize.define('subject', {
     id: {
       autoIncrement: true,
-      type: DataTypes.BIGINT,
+      type: DataTypes.BIGINT.UNSIGNED,
       allowNull: false,
       primaryKey: true
     },
     name: {
       type: DataTypes.STRING(191),
-      allowNull: false
+      allowNull: false,
+      defaultValue: "无"
     },
     isdel: {
       type: DataTypes.BIGINT.UNSIGNED,
@@ -41,13 +42,6 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "isdel" },
-        ]
-      },
-      {
-        name: "id",
-        using: "BTREE",
-        fields: [
-          { name: "id" },
         ]
       },
     ]

@@ -3,36 +3,36 @@ module.exports = function(sequelize, DataTypes) {
   return sequelize.define('ssh', {
     id: {
       autoIncrement: true,
-      type: DataTypes.BIGINT,
+      type: DataTypes.BIGINT.UNSIGNED,
       allowNull: false,
       primaryKey: true
     },
-    isdel: {
-      type: DataTypes.BIGINT,
-      allowNull: false,
-      defaultValue: 0
-    },
     userid: {
-      type: DataTypes.BIGINT,
+      type: DataTypes.BIGINT.UNSIGNED,
       allowNull: false,
       defaultValue: 0,
       unique: "userid"
     },
     port: {
-      type: DataTypes.BIGINT,
-      allowNull: true,
+      type: DataTypes.BIGINT.UNSIGNED,
+      allowNull: false,
       defaultValue: 0,
       unique: "port"
     },
+    isdel: {
+      type: DataTypes.BIGINT.UNSIGNED,
+      allowNull: false,
+      defaultValue: 0
+    },
     buy_time: {
       type: DataTypes.DATE,
-      allowNull: true,
+      allowNull: false,
       defaultValue: Sequelize.Sequelize.fn('current_timestamp')
     },
     password: {
       type: DataTypes.TEXT,
-      allowNull: true,
-      defaultValue: "'\\'ltpp\\''"
+      allowNull: false,
+      defaultValue: "'ltpp'"
     }
   }, {
     sequelize,
@@ -68,20 +68,6 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "isdel" },
-        ]
-      },
-      {
-        name: "id",
-        using: "BTREE",
-        fields: [
-          { name: "id" },
-        ]
-      },
-      {
-        name: "buy_time",
-        using: "BTREE",
-        fields: [
-          { name: "buy_time" },
         ]
       },
     ]

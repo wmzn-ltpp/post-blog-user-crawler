@@ -17,12 +17,12 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: 0
     },
-    isdel: {
+    grade: {
       type: DataTypes.BIGINT.UNSIGNED,
       allowNull: false,
       defaultValue: 0
     },
-    grade: {
+    isdel: {
       type: DataTypes.BIGINT.UNSIGNED,
       allowNull: false,
       defaultValue: 0
@@ -67,24 +67,10 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
-        name: "time",
-        using: "BTREE",
-        fields: [
-          { name: "time" },
-        ]
-      },
-      {
         name: "isdel",
         using: "BTREE",
         fields: [
           { name: "isdel" },
-        ]
-      },
-      {
-        name: "id",
-        using: "BTREE",
-        fields: [
-          { name: "id" },
         ]
       },
     ]

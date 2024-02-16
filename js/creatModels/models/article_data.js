@@ -1,25 +1,20 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('image', {
-    id: {
+  return sequelize.define('article_data', {
+    article_id: {
       autoIncrement: true,
       type: DataTypes.BIGINT.UNSIGNED,
       allowNull: false,
       primaryKey: true
     },
-    isdel: {
-      type: DataTypes.BIGINT.UNSIGNED,
-      allowNull: false,
-      defaultValue: 0
-    },
-    url: {
+    data: {
       type: DataTypes.TEXT,
       allowNull: false,
-      defaultValue: "'无'"
+      defaultValue: "''"
     }
   }, {
     sequelize,
-    tableName: 'image',
+    tableName: 'article_data',
     timestamps: false,
     indexes: [
       {
@@ -27,14 +22,7 @@ module.exports = function(sequelize, DataTypes) {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "id" },
-        ]
-      },
-      {
-        name: "isdel",
-        using: "BTREE",
-        fields: [
-          { name: "isdel" },
+          { name: "article_id" },
         ]
       },
     ]

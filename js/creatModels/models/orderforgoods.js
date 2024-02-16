@@ -7,18 +7,20 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       primaryKey: true
     },
-    isdel: {
+    userid: {
       type: DataTypes.BIGINT.UNSIGNED,
       allowNull: false,
       defaultValue: 0
     },
-    userid: {
-      type: DataTypes.BIGINT.UNSIGNED,
-      allowNull: false
-    },
     goodsid: {
       type: DataTypes.BIGINT.UNSIGNED,
-      allowNull: false
+      allowNull: false,
+      defaultValue: 0
+    },
+    isdel: {
+      type: DataTypes.BIGINT.UNSIGNED,
+      allowNull: false,
+      defaultValue: 0
     },
     time: {
       type: DataTypes.DATE,
@@ -57,20 +59,6 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "goodsid" },
-        ]
-      },
-      {
-        name: "id",
-        using: "BTREE",
-        fields: [
-          { name: "id" },
-        ]
-      },
-      {
-        name: "time",
-        using: "BTREE",
-        fields: [
-          { name: "time" },
         ]
       },
     ]

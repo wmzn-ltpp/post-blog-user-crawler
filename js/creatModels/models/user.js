@@ -8,14 +8,10 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey: true,
       comment: "id"
     },
-    isdel: {
-      type: DataTypes.BIGINT.UNSIGNED,
-      allowNull: false,
-      defaultValue: 0
-    },
     name: {
       type: DataTypes.STRING(26),
       allowNull: false,
+      defaultValue: "无",
       comment: "用户名"
     },
     online: {
@@ -41,69 +37,50 @@ module.exports = function(sequelize, DataTypes) {
       defaultValue: 0,
       comment: "粉丝数"
     },
-    password: {
-      type: DataTypes.STRING(128),
-      allowNull: false,
-      defaultValue: "",
-      comment: "密码"
-    },
     student_number: {
       type: DataTypes.STRING(191),
-      allowNull: true,
-      defaultValue: "0"
+      allowNull: false,
+      defaultValue: "未知"
     },
     enrollment_year: {
       type: DataTypes.BIGINT.UNSIGNED,
-      allowNull: true,
+      allowNull: false,
       defaultValue: 0,
       comment: "入学年份"
     },
     school: {
       type: DataTypes.STRING(191),
-      allowNull: true,
-      defaultValue: "无",
+      allowNull: false,
+      defaultValue: "未知",
       comment: "学校"
     },
     college: {
       type: DataTypes.STRING(191),
-      allowNull: true,
-      defaultValue: "无",
+      allowNull: false,
+      defaultValue: "未知",
       comment: "学院"
     },
     subject: {
       type: DataTypes.STRING(191),
-      allowNull: true,
-      defaultValue: "无",
+      allowNull: false,
+      defaultValue: "未知",
       comment: "专业"
     },
     class: {
       type: DataTypes.STRING(191),
-      allowNull: true,
-      defaultValue: "无",
+      allowNull: false,
+      defaultValue: "未知",
       comment: "班级"
     },
     email: {
       type: DataTypes.STRING(191),
-      allowNull: true,
-      defaultValue: "1491579574@qq.com"
+      allowNull: false,
+      defaultValue: "未知"
     },
     money: {
       type: DataTypes.DECIMAL(65,16),
       allowNull: false,
       defaultValue: 0.0000000000000000
-    },
-    headimage: {
-      type: DataTypes.TEXT,
-      allowNull: true
-    },
-    bkimage: {
-      type: DataTypes.TEXT,
-      allowNull: true
-    },
-    sex: {
-      type: DataTypes.STRING(6),
-      allowNull: true,
-      defaultValue: "男"
     },
     follow: {
       type: DataTypes.BIGINT.UNSIGNED,
@@ -111,40 +88,74 @@ module.exports = function(sequelize, DataTypes) {
       defaultValue: 0,
       comment: "关注数"
     },
-    mysay: {
-      type: DataTypes.TEXT,
-      allowNull: true
-    },
-    bkvideo: {
-      type: DataTypes.TEXT,
-      allowNull: true
-    },
-    musicuid: {
-      type: DataTypes.TEXT,
-      allowNull: true,
-      defaultValue: "'0'"
-    },
-    musiclovelistid: {
-      type: DataTypes.TEXT,
-      allowNull: true,
-      defaultValue: "'0'"
-    },
-    isusemusic: {
-      type: DataTypes.BIGINT.UNSIGNED,
-      allowNull: true,
-      defaultValue: 1
-    },
     registertime: {
       type: DataTypes.DATE,
-      allowNull: true,
+      allowNull: false,
       defaultValue: Sequelize.Sequelize.fn('current_timestamp'),
       comment: "注册时间"
     },
     lastlogin: {
       type: DataTypes.DATE,
-      allowNull: true,
+      allowNull: false,
       defaultValue: Sequelize.Sequelize.fn('current_timestamp'),
-      comment: "上次登录时间"
+      comment: "上次在线时间"
+    },
+    isdel: {
+      type: DataTypes.BIGINT.UNSIGNED,
+      allowNull: false,
+      defaultValue: 0
+    },
+    password: {
+      type: DataTypes.STRING(128),
+      allowNull: false,
+      defaultValue: "''",
+      comment: "密码"
+    },
+    headimage: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+      defaultValue: "''"
+    },
+    bkimage: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+      defaultValue: "''"
+    },
+    sex: {
+      type: DataTypes.STRING(6),
+      allowNull: false,
+      defaultValue: "男"
+    },
+    mysay: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+      defaultValue: "''"
+    },
+    bkvideo: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+      defaultValue: "''"
+    },
+    musicuid: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+      defaultValue: "''"
+    },
+    musiclovelistid: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+      defaultValue: "''"
+    },
+    isusemusic: {
+      type: DataTypes.BIGINT.UNSIGNED,
+      allowNull: false,
+      defaultValue: 1
+    },
+    root_css: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+      defaultValue: "''",
+      comment: ":root中CSS变量"
     }
   }, {
     sequelize,
@@ -154,13 +165,6 @@ module.exports = function(sequelize, DataTypes) {
       {
         name: "PRIMARY",
         unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "id" },
-        ]
-      },
-      {
-        name: "id",
         using: "BTREE",
         fields: [
           { name: "id" },
@@ -258,10 +262,10 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
-        name: "college",
+        name: "email",
         using: "BTREE",
         fields: [
-          { name: "college" },
+          { name: "email" },
         ]
       },
       {
@@ -269,6 +273,27 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "sex" },
+        ]
+      },
+      {
+        name: "money",
+        using: "BTREE",
+        fields: [
+          { name: "money" },
+        ]
+      },
+      {
+        name: "college",
+        using: "BTREE",
+        fields: [
+          { name: "college" },
+        ]
+      },
+      {
+        name: "follow",
+        using: "BTREE",
+        fields: [
+          { name: "follow" },
         ]
       },
     ]

@@ -1,55 +1,57 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('contestrank', {
+  return sequelize.define('chat_file_path', {
     id: {
       autoIncrement: true,
       type: DataTypes.BIGINT.UNSIGNED,
       allowNull: false,
       primaryKey: true
     },
-    contestid: {
+    post_user_id: {
       type: DataTypes.BIGINT.UNSIGNED,
       allowNull: false,
       defaultValue: 0
     },
-    problemid: {
+    get_user_id: {
       type: DataTypes.BIGINT.UNSIGNED,
       allowNull: false,
       defaultValue: 0
     },
-    userid: {
+    path: {
+      type: DataTypes.STRING(535),
+      allowNull: false,
+      defaultValue: "未知",
+      unique: "path_2"
+    },
+    file_id: {
       type: DataTypes.BIGINT.UNSIGNED,
       allowNull: false,
-      defaultValue: 0
-    },
-    score: {
-      type: DataTypes.BIGINT.UNSIGNED,
-      allowNull: false,
-      defaultValue: 0
-    },
-    submittime: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: Sequelize.Sequelize.fn('current_timestamp')
-    },
-    language: {
-      type: DataTypes.STRING(16),
-      allowNull: false,
-      defaultValue: "C++"
+      defaultValue: 0,
+      unique: "file_id"
     },
     isdel: {
       type: DataTypes.BIGINT.UNSIGNED,
       allowNull: false,
       defaultValue: 0
     },
-    code: {
-      type: DataTypes.TEXT,
+    name: {
+      type: DataTypes.STRING(535),
       allowNull: false,
-      defaultValue: "'无'"
+      defaultValue: "无"
+    },
+    time: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: Sequelize.Sequelize.fn('current_timestamp')
+    },
+    size: {
+      type: DataTypes.BIGINT.UNSIGNED,
+      allowNull: false,
+      defaultValue: 0
     }
   }, {
     sequelize,
-    tableName: 'contestrank',
+    tableName: 'chat_file_path',
     timestamps: false,
     indexes: [
       {
@@ -61,45 +63,19 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
-        name: "userid",
+        name: "path_2",
+        unique: true,
         using: "BTREE",
         fields: [
-          { name: "userid" },
+          { name: "path" },
         ]
       },
       {
-        name: "contestid",
+        name: "file_id",
+        unique: true,
         using: "BTREE",
         fields: [
-          { name: "contestid" },
-        ]
-      },
-      {
-        name: "problemid",
-        using: "BTREE",
-        fields: [
-          { name: "problemid" },
-        ]
-      },
-      {
-        name: "submittime",
-        using: "BTREE",
-        fields: [
-          { name: "submittime" },
-        ]
-      },
-      {
-        name: "language",
-        using: "BTREE",
-        fields: [
-          { name: "language" },
-        ]
-      },
-      {
-        name: "score",
-        using: "BTREE",
-        fields: [
-          { name: "score" },
+          { name: "file_id" },
         ]
       },
       {
@@ -107,6 +83,34 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "isdel" },
+        ]
+      },
+      {
+        name: "post_user_id",
+        using: "BTREE",
+        fields: [
+          { name: "post_user_id" },
+        ]
+      },
+      {
+        name: "get_user_id",
+        using: "BTREE",
+        fields: [
+          { name: "get_user_id" },
+        ]
+      },
+      {
+        name: "path",
+        using: "BTREE",
+        fields: [
+          { name: "path" },
+        ]
+      },
+      {
+        name: "file_id_2",
+        using: "BTREE",
+        fields: [
+          { name: "file_id" },
         ]
       },
     ]

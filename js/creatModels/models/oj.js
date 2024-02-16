@@ -7,11 +7,6 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       primaryKey: true
     },
-    isdel: {
-      type: DataTypes.BIGINT.UNSIGNED,
-      allowNull: false,
-      defaultValue: 0
-    },
     public: {
       type: DataTypes.BIGINT.UNSIGNED,
       allowNull: false,
@@ -35,19 +30,27 @@ module.exports = function(sequelize, DataTypes) {
     problemFrom: {
       type: DataTypes.STRING(191),
       allowNull: false,
-      defaultValue: "来源"
+      defaultValue: "LTPP"
+    },
+    isdel: {
+      type: DataTypes.BIGINT.UNSIGNED,
+      allowNull: false,
+      defaultValue: 0
     },
     problemContent: {
       type: DataTypes.TEXT,
-      allowNull: true
+      allowNull: false,
+      defaultValue: "'无'"
     },
     problemCinTest: {
       type: DataTypes.TEXT,
-      allowNull: true
+      allowNull: false,
+      defaultValue: "'无'"
     },
     problemCoutTest: {
       type: DataTypes.TEXT,
-      allowNull: true
+      allowNull: false,
+      defaultValue: "'无'"
     },
     ACNum: {
       type: DataTypes.BIGINT.UNSIGNED,
@@ -76,13 +79,13 @@ module.exports = function(sequelize, DataTypes) {
     },
     think: {
       type: DataTypes.TEXT,
-      allowNull: true,
+      allowNull: false,
       defaultValue: "'无'",
       comment: "解题思路"
     },
     code: {
       type: DataTypes.TEXT,
-      allowNull: true,
+      allowNull: false,
       defaultValue: "'无'",
       comment: "AC的C++代码"
     }
@@ -94,13 +97,6 @@ module.exports = function(sequelize, DataTypes) {
       {
         name: "PRIMARY",
         unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "id" },
-        ]
-      },
-      {
-        name: "id",
         using: "BTREE",
         fields: [
           { name: "id" },

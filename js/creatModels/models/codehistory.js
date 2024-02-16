@@ -12,49 +12,50 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: 0
     },
-    isdel: {
+    problemid: {
+      type: DataTypes.BIGINT.UNSIGNED,
+      allowNull: false,
+      defaultValue: 0
+    },
+    contestid: {
       type: DataTypes.BIGINT.UNSIGNED,
       allowNull: false,
       defaultValue: 0
     },
     language: {
       type: DataTypes.STRING(16),
-      allowNull: true,
-      defaultValue: "C++"
+      allowNull: false,
+      defaultValue: "'C++'"
     },
     status: {
       type: DataTypes.STRING(26),
-      allowNull: true,
-      defaultValue: "答案错误"
+      allowNull: false,
+      defaultValue: "'正常运行'"
     },
     time: {
       type: DataTypes.DATE,
-      allowNull: true,
+      allowNull: false,
       defaultValue: Sequelize.Sequelize.fn('current_timestamp')
+    },
+    isdel: {
+      type: DataTypes.BIGINT.UNSIGNED,
+      allowNull: false,
+      defaultValue: 0
     },
     usetime: {
       type: DataTypes.STRING(191),
-      allowNull: true,
+      allowNull: false,
       defaultValue: "0"
     },
     usememory: {
       type: DataTypes.STRING(191),
-      allowNull: true,
+      allowNull: false,
       defaultValue: "0"
     },
     code: {
       type: DataTypes.TEXT,
-      allowNull: true
-    },
-    problemid: {
-      type: DataTypes.BIGINT,
-      allowNull: true,
-      defaultValue: 0
-    },
-    contestid: {
-      type: DataTypes.BIGINT,
-      allowNull: true,
-      defaultValue: 0
+      allowNull: false,
+      defaultValue: "'无'"
     }
   }, {
     sequelize,
@@ -74,13 +75,6 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "userid" },
-        ]
-      },
-      {
-        name: "id",
-        using: "BTREE",
-        fields: [
-          { name: "id" },
         ]
       },
       {

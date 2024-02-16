@@ -7,18 +7,10 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       primaryKey: true
     },
-    isdel: {
-      type: DataTypes.BIGINT.UNSIGNED,
-      allowNull: false,
-      defaultValue: 0
-    },
     name: {
       type: DataTypes.STRING(191),
-      allowNull: false
-    },
-    content: {
-      type: DataTypes.TEXT,
-      allowNull: false
+      allowNull: false,
+      defaultValue: "无"
     },
     begin: {
       type: DataTypes.DATE,
@@ -30,16 +22,15 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: Sequelize.Sequelize.fn('current_timestamp')
     },
+    createrid: {
+      type: DataTypes.BIGINT.UNSIGNED,
+      allowNull: false,
+      defaultValue: 0
+    },
     creater: {
       type: DataTypes.STRING(26),
       allowNull: false,
       defaultValue: "root"
-    },
-    allpeople: {
-      type: DataTypes.BIGINT.UNSIGNED,
-      allowNull: false,
-      defaultValue: 0,
-      comment: "参赛人数"
     },
     type: {
       type: DataTypes.STRING(10),
@@ -47,10 +38,21 @@ module.exports = function(sequelize, DataTypes) {
       defaultValue: "ACM",
       comment: "比赛类型"
     },
-    createrid: {
+    allpeople: {
+      type: DataTypes.BIGINT.UNSIGNED,
+      allowNull: false,
+      defaultValue: 0,
+      comment: "参赛人数"
+    },
+    isdel: {
       type: DataTypes.BIGINT.UNSIGNED,
       allowNull: false,
       defaultValue: 0
+    },
+    content: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+      defaultValue: "'无'"
     }
   }, {
     sequelize,
@@ -70,13 +72,6 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "name" },
-        ]
-      },
-      {
-        name: "id",
-        using: "BTREE",
-        fields: [
-          { name: "id" },
         ]
       },
       {

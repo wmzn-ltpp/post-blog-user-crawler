@@ -12,16 +12,10 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       comment: "博客标题"
     },
-    isdel: {
-      type: DataTypes.BIGINT,
-      allowNull: false,
-      defaultValue: 0
-    },
     public: {
       type: DataTypes.BIGINT.UNSIGNED,
-      allowNull: true,
-      defaultValue: 1,
-      comment: "是否可见"
+      allowNull: false,
+      defaultValue: 1
     },
     writerid: {
       type: DataTypes.BIGINT.UNSIGNED,
@@ -30,48 +24,49 @@ module.exports = function(sequelize, DataTypes) {
     },
     problemid: {
       type: DataTypes.BIGINT.UNSIGNED,
-      allowNull: true,
+      allowNull: false,
       defaultValue: 0
     },
     writer: {
       type: DataTypes.STRING(26),
-      allowNull: true,
-      defaultValue: "匿名用户",
+      allowNull: false,
+      defaultValue: "未知用户",
       comment: "作者"
+    },
+    isdel: {
+      type: DataTypes.BIGINT,
+      allowNull: false,
+      defaultValue: 0
     },
     fabulous: {
       type: DataTypes.BIGINT.UNSIGNED,
-      allowNull: true,
-      defaultValue: 0,
-      comment: "赞"
+      allowNull: false,
+      defaultValue: 0
     },
     collection: {
       type: DataTypes.BIGINT.UNSIGNED,
-      allowNull: true,
-      defaultValue: 0,
-      comment: "收藏"
+      allowNull: false,
+      defaultValue: 0
     },
     releasetime: {
       type: DataTypes.DATE,
-      allowNull: true,
-      defaultValue: Sequelize.Sequelize.fn('current_timestamp'),
-      comment: "编写时间"
+      allowNull: false,
+      defaultValue: Sequelize.Sequelize.fn('current_timestamp')
     },
     lastchangetime: {
       type: DataTypes.DATE,
-      allowNull: true,
-      defaultValue: Sequelize.Sequelize.fn('current_timestamp'),
-      comment: "上次修改时间"
+      allowNull: false,
+      defaultValue: Sequelize.Sequelize.fn('current_timestamp')
     },
     image: {
       type: DataTypes.TEXT,
-      allowNull: true,
-      comment: "图片url"
+      allowNull: false,
+      defaultValue: "''"
     },
     article: {
       type: DataTypes.TEXT,
-      allowNull: true,
-      comment: "博客内容"
+      allowNull: false,
+      defaultValue: "''"
     }
   }, {
     sequelize,
@@ -112,27 +107,6 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "public" },
-        ]
-      },
-      {
-        name: "id",
-        using: "BTREE",
-        fields: [
-          { name: "id" },
-        ]
-      },
-      {
-        name: "fabulous",
-        using: "BTREE",
-        fields: [
-          { name: "fabulous" },
-        ]
-      },
-      {
-        name: "collection",
-        using: "BTREE",
-        fields: [
-          { name: "collection" },
         ]
       },
       {

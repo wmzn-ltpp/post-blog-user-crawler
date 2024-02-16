@@ -16,30 +16,31 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: 0
     },
+    total: {
+      type: DataTypes.BIGINT.UNSIGNED,
+      allowNull: false,
+      defaultValue: 0
+    },
     isdel: {
       type: DataTypes.BIGINT.UNSIGNED,
       allowNull: false,
       defaultValue: 0
+    },
+    time: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: Sequelize.Sequelize.fn('current_timestamp')
+    },
+    headimage: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+      defaultValue: "''"
     },
     code: {
       type: DataTypes.STRING(535),
       allowNull: false,
       defaultValue: "",
       comment: "加群验证码"
-    },
-    total: {
-      type: DataTypes.BIGINT.UNSIGNED,
-      allowNull: false,
-      defaultValue: 0
-    },
-    headimage: {
-      type: DataTypes.TEXT,
-      allowNull: false
-    },
-    time: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: Sequelize.Sequelize.fn('current_timestamp')
     }
   }, {
     sequelize,
@@ -69,31 +70,10 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
-        name: "time",
-        using: "BTREE",
-        fields: [
-          { name: "time" },
-        ]
-      },
-      {
-        name: "jointime",
-        using: "BTREE",
-        fields: [
-          { name: "time" },
-        ]
-      },
-      {
         name: "creatorid",
         using: "BTREE",
         fields: [
           { name: "creatorid" },
-        ]
-      },
-      {
-        name: "id",
-        using: "BTREE",
-        fields: [
-          { name: "id" },
         ]
       },
       {

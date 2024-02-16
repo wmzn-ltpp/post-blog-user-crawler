@@ -7,17 +7,23 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       primaryKey: true
     },
-    isdel: {
+    name: {
+      type: DataTypes.STRING(535),
+      allowNull: false,
+      defaultValue: "无",
+      comment: "提问内容精简"
+    },
+    userid: {
       type: DataTypes.BIGINT.UNSIGNED,
       allowNull: false,
       defaultValue: 0
     },
-    name: {
-      type: DataTypes.STRING(535),
+    answer_num: {
+      type: DataTypes.BIGINT.UNSIGNED,
       allowNull: false,
-      comment: "提问内容精简"
+      defaultValue: 0
     },
-    userid: {
+    isdel: {
       type: DataTypes.BIGINT.UNSIGNED,
       allowNull: false,
       defaultValue: 0
@@ -27,14 +33,10 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: Sequelize.Sequelize.fn('current_timestamp')
     },
-    answer_num: {
-      type: DataTypes.BIGINT.UNSIGNED,
-      allowNull: false,
-      defaultValue: 0
-    },
     question: {
       type: DataTypes.TEXT,
       allowNull: false,
+      defaultValue: "'无'",
       comment: "提问内容"
     }
   }, {
@@ -72,24 +74,10 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
-        name: "time",
-        using: "BTREE",
-        fields: [
-          { name: "time" },
-        ]
-      },
-      {
         name: "answer_num",
         using: "BTREE",
         fields: [
           { name: "answer_num" },
-        ]
-      },
-      {
-        name: "id",
-        using: "BTREE",
-        fields: [
-          { name: "id" },
         ]
       },
     ]

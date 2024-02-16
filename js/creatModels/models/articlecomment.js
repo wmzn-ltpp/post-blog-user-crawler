@@ -37,21 +37,22 @@ module.exports = function(sequelize, DataTypes) {
     },
     username: {
       type: DataTypes.STRING(26),
-      allowNull: true,
-      defaultValue: "匿名用户"
+      allowNull: false,
+      defaultValue: "未知用户"
     },
     tousername: {
       type: DataTypes.STRING(26),
-      allowNull: true,
-      defaultValue: "匿名用户"
+      allowNull: false,
+      defaultValue: "未知用户"
     },
     text: {
       type: DataTypes.TEXT,
-      allowNull: true
+      allowNull: false,
+      defaultValue: "'无'"
     },
     time: {
       type: DataTypes.DATE,
-      allowNull: true,
+      allowNull: false,
       defaultValue: Sequelize.Sequelize.fn('current_timestamp')
     }
   }, {
@@ -93,20 +94,6 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "maincommentid" },
-        ]
-      },
-      {
-        name: "id",
-        using: "BTREE",
-        fields: [
-          { name: "id" },
-        ]
-      },
-      {
-        name: "time",
-        using: "BTREE",
-        fields: [
-          { name: "time" },
         ]
       },
       {

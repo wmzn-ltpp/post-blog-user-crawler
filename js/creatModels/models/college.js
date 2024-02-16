@@ -9,7 +9,9 @@ module.exports = function(sequelize, DataTypes) {
     },
     name: {
       type: DataTypes.STRING(191),
-      allowNull: false
+      allowNull: false,
+      defaultValue: "无",
+      unique: "name_2"
     },
     isdel: {
       type: DataTypes.BIGINT.UNSIGNED,
@@ -30,6 +32,14 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
+        name: "name_2",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "name" },
+        ]
+      },
+      {
         name: "name",
         using: "BTREE",
         fields: [
@@ -41,13 +51,6 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "isdel" },
-        ]
-      },
-      {
-        name: "id",
-        using: "BTREE",
-        fields: [
-          { name: "id" },
         ]
       },
     ]

@@ -17,6 +17,11 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: 0
     },
+    language: {
+      type: DataTypes.STRING(16),
+      allowNull: false,
+      defaultValue: "C++"
+    },
     isdel: {
       type: DataTypes.BIGINT.UNSIGNED,
       allowNull: false,
@@ -24,17 +29,13 @@ module.exports = function(sequelize, DataTypes) {
     },
     time: {
       type: DataTypes.DATE,
-      allowNull: true,
+      allowNull: false,
       defaultValue: Sequelize.Sequelize.fn('current_timestamp')
-    },
-    language: {
-      type: DataTypes.STRING(16),
-      allowNull: true,
-      defaultValue: "C++"
     },
     code: {
       type: DataTypes.TEXT,
-      allowNull: true
+      allowNull: false,
+      defaultValue: "'无'"
     }
   }, {
     sequelize,
@@ -44,13 +45,6 @@ module.exports = function(sequelize, DataTypes) {
       {
         name: "PRIMARY",
         unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "id" },
-        ]
-      },
-      {
-        name: "id",
         using: "BTREE",
         fields: [
           { name: "id" },
@@ -75,13 +69,6 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "language" },
-        ]
-      },
-      {
-        name: "time",
-        using: "BTREE",
-        fields: [
-          { name: "time" },
         ]
       },
       {

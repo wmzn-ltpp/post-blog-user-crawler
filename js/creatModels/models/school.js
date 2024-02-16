@@ -10,30 +10,35 @@ module.exports = function(sequelize, DataTypes) {
     name: {
       type: DataTypes.STRING(191),
       allowNull: false,
+      defaultValue: "无",
       comment: "学校名称"
     },
     code: {
       type: DataTypes.STRING(191),
       allowNull: false,
+      defaultValue: "无",
       comment: "学校标识码"
     },
     department: {
       type: DataTypes.STRING(191),
       allowNull: false,
+      defaultValue: "无",
       comment: "主管部门"
     },
     place: {
       type: DataTypes.STRING(191),
       allowNull: false,
+      defaultValue: "无",
       comment: "所在地"
     },
     type: {
       type: DataTypes.STRING(191),
       allowNull: false,
+      defaultValue: "无",
       comment: "办学层次（本科）"
     },
     isdel: {
-      type: DataTypes.INTEGER.UNSIGNED,
+      type: DataTypes.BIGINT.UNSIGNED,
       allowNull: false,
       defaultValue: 0
     }
@@ -83,13 +88,6 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "type" },
-        ]
-      },
-      {
-        name: "id",
-        using: "BTREE",
-        fields: [
-          { name: "id" },
         ]
       },
       {

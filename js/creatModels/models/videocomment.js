@@ -7,6 +7,11 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       primaryKey: true
     },
+    videoid: {
+      type: DataTypes.BIGINT.UNSIGNED,
+      allowNull: false,
+      defaultValue: 0
+    },
     maincommentid: {
       type: DataTypes.BIGINT.UNSIGNED,
       allowNull: false,
@@ -22,11 +27,6 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: 0
     },
-    videoid: {
-      type: DataTypes.BIGINT.UNSIGNED,
-      allowNull: false,
-      defaultValue: 0
-    },
     isdel: {
       type: DataTypes.BIGINT.UNSIGNED,
       allowNull: false,
@@ -35,16 +35,17 @@ module.exports = function(sequelize, DataTypes) {
     username: {
       type: DataTypes.STRING(26),
       allowNull: false,
-      defaultValue: "匿名用户"
+      defaultValue: "未知用户"
     },
     text: {
       type: DataTypes.TEXT,
-      allowNull: false
+      allowNull: false,
+      defaultValue: "'无'"
     },
     tousername: {
       type: DataTypes.STRING(26),
       allowNull: false,
-      defaultValue: "匿名用户"
+      defaultValue: "未知用户"
     },
     time: {
       type: DataTypes.DATE,
@@ -79,13 +80,6 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
-        name: "time",
-        using: "BTREE",
-        fields: [
-          { name: "time" },
-        ]
-      },
-      {
         name: "touserid",
         using: "BTREE",
         fields: [
@@ -97,13 +91,6 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "maincommentid" },
-        ]
-      },
-      {
-        name: "id",
-        using: "BTREE",
-        fields: [
-          { name: "id" },
         ]
       },
       {

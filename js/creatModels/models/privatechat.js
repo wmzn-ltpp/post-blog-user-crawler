@@ -24,7 +24,8 @@ module.exports = function(sequelize, DataTypes) {
     },
     msg: {
       type: DataTypes.TEXT,
-      allowNull: false
+      allowNull: false,
+      defaultValue: "'无'"
     },
     time: {
       type: DataTypes.DATE,
@@ -45,13 +46,6 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
-        name: "id",
-        using: "BTREE",
-        fields: [
-          { name: "id" },
-        ]
-      },
-      {
         name: "post_user_uid",
         using: "BTREE",
         fields: [
@@ -63,13 +57,6 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "get_user_id" },
-        ]
-      },
-      {
-        name: "time",
-        using: "BTREE",
-        fields: [
-          { name: "time" },
         ]
       },
       {
