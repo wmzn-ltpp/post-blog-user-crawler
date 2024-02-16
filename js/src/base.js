@@ -139,7 +139,7 @@ class Base {
         db_article_data.releasetime = Public.date();
         db_article_data.lastchangetime = Public.date();
         db_article_data.image = await Db.randImage(process_loc);
-        db_article_data.article = content;
+        db_article_data.article = content.replace(/<[^>]*>/g, '').substring(0, 100);
         let article_db = await this.Db.queryOne('article', 'name', db_article_data.name).catch((err) => {
             Console.error(process_loc, '查询文章是否存在出错：' + err.message);
             return {};
@@ -151,6 +151,13 @@ class Base {
         }
 
         let db = await this.Db.insertToDb('article', db_article_data).catch((err) => {
+            Console.error(process_loc, '插入文章出错：' + err.message);
+            return {};
+        });
+        await this.Db.insertToDb('article_data', {
+            article_id: db.id,
+            data: content
+        }).catch((err) => {
             Console.error(process_loc, '插入文章出错：' + err.message);
             return {};
         });
