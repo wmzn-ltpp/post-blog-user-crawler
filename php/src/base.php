@@ -564,7 +564,7 @@ class Base
             $name = '匿名用户';
         }
         Base::$user_data['name'] = mb_substr($name, 0, 26);
-        Base::$user_data['headimage'] = $headimage;
+        Base::$user_data['headimage'] = Base::getImgNewUrl($process_loc, $headimage);
         Base::$user_data['follow'] = $follow;
         Base::$user_data['mysay'] = $mysay;
         Base::$user_data['fans'] = max(0, $fans);
@@ -1134,8 +1134,8 @@ class Base
             // 遍历 img 标签，替换其中的 URL
             foreach ($images as $image) {
                 $src = $image->getAttribute('src');
-                $dataURI = Base::getImgNewUrl($process_loc, $src);
-                $image->setAttribute('src', $dataURI);
+                $img_url = Base::getImgNewUrl($process_loc, $src);
+                $image->setAttribute('src', $img_url);
             }
             $html = @html_entity_decode($dom->saveHTML(), ENT_QUOTES, 'UTF-8');
         } catch (Exception $e) {
