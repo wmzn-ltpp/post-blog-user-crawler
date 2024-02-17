@@ -248,8 +248,6 @@ class Base
     static public function utfsubstr(string $str = '', $index = 0, $getlen = 0, $is_has_br = false)
     {
         try {
-
-
             if (!$str) {
                 return '';
             }
