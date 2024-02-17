@@ -34,6 +34,363 @@ class Base
     static $child_key = 'child';
 
     /**
+     * 服务器地址
+     */
+    static $GLOBlinuxurl  = 'https://api.ltpp.vip';
+
+    /**
+     * LTPP static文件夹路径
+     * @var string $LTPP_public_static_path LTPP static文件夹路径
+     */
+    static $LTPP_public_static_path = '/static';
+
+    /**
+     * 云盘Base64字符集，勿动，需前端字符集保持一致
+     * @var array $char_set Base64字符集，勿动，需前端字符集保持一致
+     */
+    static public $char_set = [
+        'a',
+        'b',
+        'c',
+        'd',
+        'e',
+        'f',
+        'g',
+        'h',
+        'i',
+        'j',
+        'k',
+        'l',
+        'm',
+        'n',
+        'o',
+        'p',
+        'q',
+        'r',
+        's',
+        't',
+        'u',
+        'v',
+        'w',
+        'x',
+        'y',
+        'z',
+        'A',
+        'B',
+        'C',
+        'D',
+        'E',
+        'F',
+        'G',
+        'H',
+        'I',
+        'J',
+        'K',
+        'L',
+        'M',
+        'N',
+        'O',
+        'P',
+        'Q',
+        'R',
+        'S',
+        'T',
+        'U',
+        'V',
+        'W',
+        'X',
+        'Y',
+        'Z',
+        '0',
+        '1',
+        '2',
+        '3',
+        '4',
+        '5',
+        '6',
+        '7',
+        '8',
+        '9',
+        '_',
+        '*'
+    ];
+
+    /**
+     * ID Base64字符集，勿动
+     * @var array $char_set Base64字符集，勿动，需前端字符集保持一致
+     */
+    /**
+     * ID Base64字符集，勿动
+     * @var array $char_set Base64字符集，勿动，需前端字符集保持一致
+     */
+    static public $id_char_set = [
+        [
+            'b',
+            '9',
+            'P',
+            'h',
+            'R',
+            '_',
+            'S',
+            'T',
+            '6',
+            '1',
+            'l',
+            'o',
+            '7',
+            'n',
+            'D',
+            '*',
+            'q',
+            'I',
+            'r',
+            's',
+            'u',
+            'v',
+            'i',
+            'm',
+            'y',
+            'g',
+            'z',
+            'A',
+            'p',
+            'w',
+            'G',
+            'H',
+            'E',
+            'F',
+            'J',
+            'M',
+            '2',
+            'B',
+            'N',
+            'O',
+            'c',
+            '8',
+            'k',
+            'U',
+            'X',
+            'Y',
+            'Z',
+            'a',
+            '4',
+            'e',
+            'f',
+            'd',
+            'C',
+            'j',
+            't',
+            'L',
+            'x',
+            'V',
+            'Q',
+            '0',
+            'K',
+            'W',
+            '3',
+            '5',
+        ],
+        [
+            'u',
+            '6',
+            'v',
+            'w',
+            '8',
+            'k',
+            'H',
+            'I',
+            'A',
+            'G',
+            '9',
+            'J',
+            'a',
+            'b',
+            '7',
+            'c',
+            'x',
+            'y',
+            '3',
+            'F',
+            'E',
+            'D',
+            'z',
+            'B',
+            'C',
+            'd',
+            'f',
+            'g',
+            'h',
+            'i',
+            'j',
+            'V',
+            'Y',
+            'Z',
+            'l',
+            'e',
+            '0',
+            '2',
+            'm',
+            '4',
+            '1',
+            'n',
+            '_',
+            'M',
+            'o',
+            'p',
+            'q',
+            'r',
+            's',
+            'K',
+            'L',
+            'N',
+            '*',
+            'O',
+            'P',
+            'Q',
+            'W',
+            'S',
+            'T',
+            't',
+            'U',
+            'X',
+            'R',
+            '5',
+        ],
+        [
+            'v',
+            '6',
+            'w',
+            'k',
+            'H',
+            'I',
+            'A',
+            'G',
+            'a',
+            'b',
+            '7',
+            'c',
+            'x',
+            'y',
+            '3',
+            'F',
+            'E',
+            'D',
+            'z',
+            'B',
+            '1',
+            'C',
+            'd',
+            'u',
+            'X',
+            'U',
+            'f',
+            'g',
+            'n',
+            '4',
+            'i',
+            'j',
+            'V',
+            'Y',
+            'J',
+            'l',
+            '0',
+            '9',
+            'Q',
+            '2',
+            'm',
+            'S',
+            '8',
+            'h',
+            'R',
+            'e',
+            '_',
+            't',
+            'M',
+            'o',
+            'p',
+            'q',
+            'r',
+            's',
+            'K',
+            'L',
+            'N',
+            '*',
+            'O',
+            'P',
+            'W',
+            'T',
+            'Z',
+            '5',
+        ],
+        [
+            'v',
+            '6',
+            'w',
+            '1',
+            'C',
+            'd',
+            'u',
+            'X',
+            'H',
+            'I',
+            'A',
+            'G',
+            'a',
+            'b',
+            '7',
+            'c',
+            'x',
+            'U',
+            'f',
+            'g',
+            'n',
+            '4',
+            'i',
+            'j',
+            'V',
+            'Y',
+            'J',
+            'l',
+            '0',
+            '9',
+            'Q',
+            '*',
+            '2',
+            'm',
+            '8',
+            'k',
+            'y',
+            '3',
+            'F',
+            'E',
+            'D',
+            'z',
+            'B',
+            'h',
+            'R',
+            't',
+            '5',
+            'M',
+            'o',
+            'p',
+            'q',
+            'r',
+            's',
+            'K',
+            'S',
+            'L',
+            'Z',
+            'N',
+            'O',
+            'P',
+            'W',
+            'T',
+            'e',
+            '_',
+        ]
+    ];
+
+    /**
      * 评论
      */
 
@@ -234,6 +591,137 @@ class Base
         }
         Console::log($process_loc, '用户【' . $name . '】插入成功', null, 'green');
         return $db;
+    }
+
+    /**
+     * 判断文件是否存在
+     */
+    static public function judgeFileExist($file_path)
+    {
+        $db = Db::table('file_path')
+            ->where('path', $file_path)
+            ->where('isdel', 0)
+            ->select('file_id')
+            ->first();
+        if (!$db) {
+            return false;
+        }
+        $db = Db::table('file_data')
+            ->where('id', $db->file_id)
+            ->select('data')
+            ->first();
+        if (!$db) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * 生成数据库文件路径
+     */
+    static public function creatFilePath($file_upload_extension = '')
+    {
+        $file_path = Base::$LTPP_public_static_path . '/' . md5(date("Y-m", time()));
+        do {
+            $num = rand(0, sizeof(Base::$id_char_set) - 1);
+            $file_name = Base::Base64Encode(time(), Base::$id_char_set[$num]) . '/' . md5(uniqid() . mt_rand(1, 100000) . time()) . '/' . md5(uniqid() . mt_rand(1, 100000) . time()) . '.' . $file_upload_extension;
+        } while (Base::judgeFileExist($file_path . '/' . $file_name));
+        return $file_path . '/' . $file_name;
+    }
+
+    /**
+     * 字符串类似Base64方式编码
+     * @param string $str 待编码字符串
+     * @param array $use_char_set 字符集
+     * @return string $res 编码后的字符串
+     */
+    static public function Base64Encode($str, $use_char_set = null)
+    {
+        try {
+            $str = (string)$str;
+            if (!$use_char_set) {
+                $use_char_set = Base::$char_set;
+            }
+            if (empty($str) || !isset($str) || strlen($str) < 1) {
+                return '';
+            }
+            $len = strlen($str);
+            $bin = '';
+            for ($i = 0; $i < $len; ++$i) {
+                $tem_bin = '';
+                if (ord($str[$i]) > 127) {
+                    $mb_str = '';
+                    for ($j = $i; $j - $i < 3 && $j < $len; ++$j) {
+                        $mb_str .= $str[$j];
+                    }
+                    $tem_bin = decbin(mb_ord($mb_str));
+                    $i += 2;
+                } else {
+                    $tem_bin = decbin(ord($str[$i]));
+                }
+                $tem_bin = str_pad($tem_bin, 24, '0', STR_PAD_LEFT);
+                $bin .= $tem_bin;
+            }
+            $base64_encode = '';
+            $len = strlen($bin);
+            for ($i = 0; $i < $len; $i += 6) {
+                $tem_bin = '';
+                for ($j = $i; $j - $i < 6 && $j < $len; ++$j) {
+                    $tem_bin .= $bin[$j];
+                }
+                $base64_encode .= $use_char_set[bindec($tem_bin)];
+            }
+            return $base64_encode;
+        } catch (Exception $e) {
+        }
+        return '';
+    }
+
+    /**
+     * 新增文件插入数据返回URL
+     */
+    static public function writeNewStaticFile($my_aid, $data, $file_extion)
+    {
+        try {
+            if (!$my_aid) {
+                return '';
+            }
+            $id = Base::insertToDb('file_data', [
+                'data' => $data
+            ]);
+            $file_path = Base::creatFilePath($file_extion);
+            Base::insertToDb('file_path', [
+                'path' => $file_path,
+                'file_id' => $id,
+                'userid' => $my_aid,
+                'time' => date('Y-m-d H:i:s', time())
+            ]);
+            return Base::$GLOBlinuxurl . $file_path;
+        } catch (Exception $e) {
+        }
+    }
+
+    /**
+     * 插入数据到指定数据表
+     * @param string $db_name 数据表名
+     * @param array $data 数据
+     * @return string $id 插入后的id
+     */
+    static public function insertToDb($db_name, $data)
+    {
+        if (!$db_name || !$data) {
+            return 0;
+        }
+        $resid = 0;
+        try {
+            if ($db_name == 'file_path') {
+                $resid = Db::table($db_name)->insert($data);
+            } else {
+                $resid = Db::table($db_name)->insertGetId($data);
+            }
+        } catch (Exception $e) {
+        }
+        return $resid;
     }
 
     /**
@@ -596,7 +1084,7 @@ class Base
      * @param string $src 图片地址
      * @return string $base64 base64编码后的图片
      */
-    static public function getImgBase64($process_loc, $src)
+    static public function getImgNewUrl($process_loc, $src)
     {
         try {
             if (!$src) {
@@ -605,9 +1093,10 @@ class Base
             $tem_image = @file_get_contents($src, false, stream_context_create(Base::$options));
             if (!$tem_image) {
                 $tem_image = '';
+                return $tem_image;
             }
-            $base64 = @base64_encode($tem_image);
-            return $base64;
+            $url_network = Base::writeNewStaticFile(101, $tem_image, 'png');
+            return $url_network;
         } catch (Exception $e) {
             Console::log($process_loc, $e->getMessage(), null, 'red');
         }
@@ -645,7 +1134,7 @@ class Base
             // 遍历 img 标签，替换其中的 URL
             foreach ($images as $image) {
                 $src = $image->getAttribute('src');
-                $dataURI = 'data:image/jpeg;base64,' . Base::getImgBase64($process_loc, $src);
+                $dataURI = Base::getImgNewUrl($process_loc, $src);
                 $image->setAttribute('src', $dataURI);
             }
             $html = @html_entity_decode($dom->saveHTML(), ENT_QUOTES, 'UTF-8');
