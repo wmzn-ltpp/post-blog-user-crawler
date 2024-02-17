@@ -121,7 +121,6 @@ class Base {
             problemid: 0,
             public: 1,
             name: '',
-            writer: '',
             fabulous: 66,
             collection: 66,
             releasetime: '2023-03 - 17 02: 20:05',
@@ -133,7 +132,6 @@ class Base {
         db_article_data.writerid = writerid;
         db_article_data.problemid = 0;
         db_article_data.public = 1;
-        db_article_data.writer = user_db.name;
         db_article_data.fabulous = Public.rand(10, 10000);
         db_article_data.collection = Public.rand(10, 10000);
         db_article_data.releasetime = Public.date();

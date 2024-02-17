@@ -103,7 +103,6 @@ class Base
         'problemid' => 0,
         'public' => 1,
         'name' => '',
-        'writer' => '',
         'fabulous' => 66,
         'collection' => 66,
         'releasetime' => '2023-03-17 02:20:05',
@@ -304,14 +303,11 @@ class Base
             Console::log($process_loc, '文章作者不存在，不进行文章插入', null, 'yellow');
             return 0;
         }
-
-        $name = $db->name;
         Base::$article_data['name'] = mb_substr($title, 0, 191);
         Base::$article_data['writerid'] = $writerid;
         Base::$article_data['problemid'] = 0;
         Base::$article_data['public'] = 1;
         Base::$article_data['name'] = $title;
-        Base::$article_data['writer'] = $name;
         Base::$article_data['fabulous'] = rand(10, 10000);
         Base::$article_data['collection'] = rand(10, 10000);
         Base::$article_data['releasetime'] = date('Y-m-d H:i:s', time());
