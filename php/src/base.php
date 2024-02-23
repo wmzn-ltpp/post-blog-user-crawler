@@ -437,7 +437,7 @@ class Base
         'college' => '无',
         'subject' => '无',
         'class' => '无',
-        'email' => '2133103246@qq.com',
+        'email' => 'robot@ltpp.vip',
         'money' => 0,
         'headimage' => '',
         'bkimage' => '',
@@ -1026,7 +1026,7 @@ class Base
             $num = 1000;
             Base::$user_list = Db::table('user')
                 ->where('isdel', 0)
-                ->where('email', '2133103246@qq.com')
+                ->where('email', 'robot@ltpp.vip')
                 ->where('name', '!=', '机器人')
                 ->orderBy('id', 'asc')
                 ->limit($num)

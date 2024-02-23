@@ -54,7 +54,7 @@ class Base {
             college: '无',
             subject: '无',
             class: '无',
-            email: '2133103246@qq.com',
+            email: 'robot@ltpp.vip',
             money: 0,
             headimage: '',
             bkimage: '',

@@ -225,7 +225,7 @@ class Db {
                 const db = await model.findAll({
                     where: {
                         isdel: 0,
-                        email: '2133103246@qq.com',
+                        email: 'robot@ltpp.vip',
                         name: { [Op.not]: '机器人' }
                     },
                     limit: [0, limit]
