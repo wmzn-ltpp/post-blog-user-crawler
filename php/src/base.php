@@ -621,12 +621,18 @@ class Base
      */
     static public function creatFilePath($file_upload_extension = '')
     {
-        $file_path = Base::$LTPP_public_static_path . '/' . md5(date("Y-m", time()));
-        do {
-            $num = rand(0, sizeof(Base::$id_char_set) - 1);
-            $file_name = Base::Base64Encode(time(), Base::$id_char_set[$num]) . '/' . md5(uniqid() . mt_rand(1, 100000) . time()) . '/' . md5(uniqid() . mt_rand(1, 100000) . time()) . '.' . $file_upload_extension;
-        } while (Base::judgeFileExist($file_path . '/' . $file_name));
-        return $file_path . '/' . $file_name;
+        try {
+            $file_path = Base::$LTPP_public_static_path . '/' . md5(time());
+            $file_name = '';
+            do {
+                $num = rand(0, sizeof(Base::$id_char_set) - 1);
+                $short_time = str_pad(time() % 100000000, 8, '0', STR_PAD_LEFT);
+                $file_name = Base::Base64Encode($short_time, Base::$id_char_set[$num]) . '/' . md5(uniqid() . mt_rand(1, 100000) . time()) . '/' . md5(uniqid() . mt_rand(1, 100000) . time()) . ($file_upload_extension ? '.' . $file_upload_extension : '');
+            } while (Base::judgeFileExist($file_path . '/' . $file_name));
+            return $file_path . '/' . $file_name;
+        } catch (Exception $e) {
+        }
+        return '';
     }
 
     /**
@@ -689,16 +695,26 @@ class Base
             $id = Base::insertToDb('file_data', [
                 'data' => $data
             ]);
+            if (!$id) {
+                return '';
+            }
             $file_path = Base::creatFilePath($file_extion);
-            Base::insertToDb('file_path', [
+            if (!$file_path) {
+                return '';
+            }
+            $id = Base::insertToDb('file_path', [
                 'path' => $file_path,
                 'file_id' => $id,
                 'userid' => $my_aid,
                 'time' => date('Y-m-d H:i:s', time())
             ]);
+            if (!$id) {
+                return '';
+            }
             return Base::$GLOBlinuxurl . $file_path;
         } catch (Exception $e) {
         }
+        return '';
     }
 
     /**
@@ -709,13 +725,17 @@ class Base
      */
     static public function insertToDb($db_name, $data)
     {
-        if (!$db_name || !$data) {
-            return 0;
-        }
         $resid = 0;
+        if (!$db_name || !$data) {
+            return $resid;
+        }
         try {
             if ($db_name == 'file_path') {
-                $resid = Db::table($db_name)->insert($data);
+                // 路径为空或者不包含static目录则返回
+                if (!isset($data['path']) || strripos($data['path'], Base::$LTPP_public_static_path) === false) {
+                    return $resid;
+                }
+                Db::table($db_name)->insert($data);
             } else {
                 $resid = Db::table($db_name)->insertGetId($data);
             }
@@ -1080,9 +1100,9 @@ class Base
     }
 
     /**
-     * 根据图片url获取base64
-     * @param string $src 图片地址
-     * @return string $base64 base64编码后的图片
+     * 获取图片URL
+     * @param string $src 图片URL
+     * @return string $url 图片URL
      */
     static public function getImgNewUrl($process_loc, $src)
     {
