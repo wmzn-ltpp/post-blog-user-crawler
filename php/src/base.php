@@ -699,18 +699,12 @@ class Base
                 return '';
             }
             $file_path = Base::creatFilePath($file_extion);
-            if (!$file_path) {
-                return '';
-            }
-            $id = Base::insertToDb('file_path', [
+            Base::insertToDb('file_path', [
                 'path' => $file_path,
                 'file_id' => $id,
                 'userid' => $my_aid,
                 'time' => date('Y-m-d H:i:s', time())
             ]);
-            if (!$id) {
-                return '';
-            }
             return Base::$GLOBlinuxurl . $file_path;
         } catch (Exception $e) {
         }
