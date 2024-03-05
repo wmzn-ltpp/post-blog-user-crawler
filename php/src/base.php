@@ -564,14 +564,7 @@ class Base
             $name = '匿名用户';
         }
         Base::$user_data['name'] = mb_substr($name, 0, 26);
-        Base::$user_data['headimage'] = Base::getImgNewUrl($process_loc, $headimage);
-        Base::$user_data['follow'] = $follow;
-        Base::$user_data['mysay'] = $mysay;
-        Base::$user_data['fans'] = max(0, $fans);
-        Base::$user_data['password'] = md5(time() * rand(1, 100));
-        Base::$user_data['sex'] = rand(1, 100) % 2 ? '男' : '女';
-        Base::$user_data['registertime'] = date('Y-m-d H:i:s', time() - rand(10000000, 10000000));
-        Base::$user_data['lastlogin'] = date('Y-m-d H:i:s', time() - rand(10, 1000));
+
         try {
             $db = Db::table('user')
                 ->where('name', Base::$user_data['name'])
@@ -580,6 +573,14 @@ class Base
                 Console::log($process_loc, '用户【' . $name . '】已存在，不进行用户插入', null, 'yellow');
                 return $db;
             }
+            Base::$user_data['follow'] = $follow;
+            Base::$user_data['mysay'] = $mysay;
+            Base::$user_data['fans'] = max(0, $fans);
+            Base::$user_data['password'] = md5(time() * rand(1, 100));
+            Base::$user_data['sex'] = rand(1, 100) % 2 ? '男' : '女';
+            Base::$user_data['registertime'] = date('Y-m-d H:i:s', time() - rand(10000000, 10000000));
+            Base::$user_data['lastlogin'] = date('Y-m-d H:i:s', time() - rand(10, 1000));
+            Base::$user_data['headimage'] = Base::getImgNewUrl($process_loc, $headimage);
             $id = Db::table('user')
                 ->insertGetId(Base::$user_data);
             $db = Db::table('user')
