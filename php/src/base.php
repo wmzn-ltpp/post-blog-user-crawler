@@ -580,7 +580,7 @@ class Base
             Base::$user_data['sex'] = rand(1, 100) % 2 ? '男' : '女';
             Base::$user_data['registertime'] = date('Y-m-d H:i:s', time() - rand(10000000, 10000000));
             Base::$user_data['lastlogin'] = date('Y-m-d H:i:s', time() - rand(10, 1000));
-            Base::$user_data['headimage'] = Base::getImgNewUrl($process_loc, $headimage);
+            Base::$user_data['headimage'] = Base::randImage();
             $id = Db::table('user')
                 ->insertGetId(Base::$user_data);
             $db = Db::table('user')
